@@ -1,1 +1,1 @@
-# Todo App in Quarkus
+# Todo App in Quarkus with Hotwire

@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: src/main/docker/Dockerfile
+    ports:
+      - "8080:8080"
+  database:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: "todos"
+      POSTGRES_PASSWORD: "password"
