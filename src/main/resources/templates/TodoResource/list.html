@@ -1,0 +1,9 @@
+{@java.util.List<todos.Todo> todos}
+{#include base} 
+  {#title}My Title{/title} 
+  {#body} 
+    {#for todo in todos} 
+      <div>{todo.title}</div>
+    {/for}
+  {/body}
+{/include}
