@@ -1,9 +1,13 @@
-#Maven
+# Maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 release.properties
+
+# NPM
+node_modules/
+package-lock.json
 
 # Eclipse
 .project

@@ -2,12 +2,8 @@ package todos;
 
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.CheckedTemplate;
-import io.quarkus.qute.runtime.ContentTypes;
 import java.util.UUID;
-import javax.activation.MimeType;
 import javax.transaction.Transactional;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
