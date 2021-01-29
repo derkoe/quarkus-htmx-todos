@@ -1,9 +1,22 @@
 {@java.util.List<todos.Todo> todos}
+
 {#include base} 
   {#title}My Title{/title} 
   {#body} 
-    {#for todo in todos} 
-      <div>{todo.title}</div>
-    {/for}
+  <section class="main">
+    <input id="toggle-all" class="toggle-all" type="checkbox">
+    <label htmlFor="toggle-all">Mark all as complete</label>
+    <ul class="todo-list">
+      {#for todo in todos}
+        <li class={{ completed: todo.completed, editing: todo.id === this.editing }}>
+          <div class="view">
+            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
+            <label>{todo.title}</label>
+            <form action="/todos/{todo.id}/delete" method="POST"><button type="submit" class="destroy"></button></form>
+          </div>
+        </li> 
+      {/for}
+    </ul>
+  </section>
   {/body}
 {/include}

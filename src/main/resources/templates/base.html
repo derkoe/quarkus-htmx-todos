@@ -3,13 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{#insert title}Todos{/}</title> 
+    <title>{#insert title}Todos{/}</title>
+    <script src="/turbo.es5-umd.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css@2.3.0/index.css">
 </head>
 <body>
-    <h1>Todos</h1>
-    <form action="/todos" method="POST">
-        <input name="title"><button>Add</button>
-    </form>
-    {#insert body}No body!{/} 
+    <section class="todoapp">
+        <header class="header">
+            <h1>todos</h1>
+            <form action="/todos" method="POST">
+                <input class="new-todo" name="title" placeholder="What needs to be done?" autoComplete="on" autoFocus>
+            </form>
+        </header>
+        {#insert body}No body!{/} 
+    </section>
+    <footer class="info">
+        <p>Double-click to edit a todo</p>
+        <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>
+        <p>Created by <a href="https://derkoe.dev">derkoe</a></p>
+        <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
 </body>
 </html>
