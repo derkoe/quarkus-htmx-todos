@@ -33,4 +33,8 @@ public class Todo extends PanacheEntityBase {
   public static void updateAllCompleted(boolean completed) {
     update("completed = ?1", completed);
   }
+
+  public static void deleteCompleted() {
+    delete("completed = true");
+  }
 }

@@ -63,4 +63,12 @@ public class TodoResource {
     Todo.deleteById(id);
     return Response.status(Status.FOUND).header("Location", "/todos").build();
   }
+
+  @POST
+  @Path("/clear-completed")
+  @Transactional
+  public Response deleteCompleted() {
+    Todo.deleteCompleted();
+    return Response.status(Status.FOUND).header("Location", "/todos").build();
+  }
 }

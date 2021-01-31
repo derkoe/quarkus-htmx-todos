@@ -1,7 +1,7 @@
 {@java.util.List<todos.Todo> todos}
 
 {#include base} 
-  {#title}My Title{/title} 
+  {#title}Quarkus/Hotwire • TodoMVC{/title} 
   {#body} 
   <header class="header">
     <h1>todos</h1>
@@ -11,17 +11,18 @@
   </header>
   <section class="main">
     <form action="/todos/toggle-all" method="POST">
-      <!-- <input id="toggle-all" class="toggle-all" type="checkbox"> -->
       <button type="submit" id="toggle-all" class="toggle-all"></button>
       <label for="toggle-all">Mark all as complete</label>
     </form>
     <ul class="todo-list">
       {#for todo in todos}
-        <li class={{ completed: todo.completed, editing: todo.id === this.editing }}>
+        <li class="{todo.completed ? 'completed' : ''}">
           <div class="view">
             <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
             <label>{todo.title}</label>
-            <form action="/todos/{todo.id}/delete" method="POST"><button type="submit" class="destroy"></button></form>
+            <form action="/todos/{todo.id}/delete" method="POST">
+              <button type="submit" class="destroy"></button>
+            </form>
           </div>
         </li> 
       {/for}
@@ -42,7 +43,9 @@
         <a class="{completed ? 'selected' : ''}" href="/todos/completed">Completed</a>
       </li>
     </ul>
-    <button class="clear-completed">Clear completed</button>
+    <form action="/todos/clear-completed" method="POST">
+      <button class="clear-completed">Clear completed</button>
+    </form>
   </footer>
   {/body}
 {/include}
