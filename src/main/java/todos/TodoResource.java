@@ -25,19 +25,19 @@ public class TodoResource {
 
   @GET
   public TemplateInstance list() {
-    return Templates.list().data("todos", Todo.listAll());
+    return Templates.list().data("todos", Todo.listAll()).data("all", true);
   }
 
   @GET
   @Path("/active")
   public TemplateInstance active() {
-    return Templates.list().data("todos", Todo.findActive());
+    return Templates.list().data("todos", Todo.findActive()).data("active", true);
   }
 
   @GET
   @Path("/completed")
   public TemplateInstance completed() {
-    return Templates.list().data("todos", Todo.findCompleted());
+    return Templates.list().data("todos", Todo.findCompleted()).data("completed", "true");
   }
 
   @POST

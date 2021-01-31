@@ -30,16 +30,16 @@
     </span>
     <ul class="filters">
       <li>
-        <a class="all" href="/todos">All</a>
+        <a class="{all ? 'selected' : ''}" href="/todos">All</a>
       </li>
       <li>
-        <a class="active" href="/todos/active">Active</a>
+        <a class="{active ? 'selected' : ''}" href="/todos/active">Active</a>
       </li>
       <li>
-        <a class="completed" href="/todos/completed">Completed</a>
+        <a class="{completed ? 'selected' : ''}" href="/todos/completed">Completed</a>
       </li>
-      <button class="clear-completed">Clear completed</button>
     </ul>
+    <button class="clear-completed">Clear completed</button>
   </footer>
   {/body}
 {/include}
