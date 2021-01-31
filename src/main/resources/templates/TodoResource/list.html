@@ -9,14 +9,17 @@
         <input class="new-todo" name="title" placeholder="What needs to be done?" autoComplete="on" autoFocus>
     </form>
   </header>
-  <section class="main" data-controller="todos">
-    <input id="toggle-all" class="toggle-all" type="checkbox" data-action="click->todos#toggle">
-    <label htmlFor="toggle-all" data-action="click->todos#toggle">Mark all as complete</label>
+  <section class="main">
+    <form action="/todos/toggle-all" method="POST">
+      <!-- <input id="toggle-all" class="toggle-all" type="checkbox"> -->
+      <button type="submit" id="toggle-all" class="toggle-all"></button>
+      <label for="toggle-all">Mark all as complete</label>
+    </form>
     <ul class="todo-list">
       {#for todo in todos}
         <li class={{ completed: todo.completed, editing: todo.id === this.editing }}>
           <div class="view">
-            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} data-todos-target="toggle">
+            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
             <label>{todo.title}</label>
             <form action="/todos/{todo.id}/delete" method="POST"><button type="submit" class="destroy"></button></form>
           </div>

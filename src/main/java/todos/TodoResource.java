@@ -47,6 +47,15 @@ public class TodoResource {
     return Response.status(Status.FOUND).header("Location", "/todos").build();
   }
 
+  @Transactional
+  @POST
+  @Path("/toggle-all")
+  public Response toggle() {
+    boolean allCompleted = Todo.findActive().isEmpty();
+    Todo.updateAllCompleted(!allCompleted);
+    return Response.status(Status.FOUND).header("Location", "/todos").build();
+  }
+
   @POST
   @Path("{id}/delete")
   @Transactional

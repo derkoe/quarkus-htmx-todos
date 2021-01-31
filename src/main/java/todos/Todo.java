@@ -29,4 +29,8 @@ public class Todo extends PanacheEntityBase {
   public static List<Todo> findCompleted() {
     return list("completed", Boolean.TRUE);
   }
+
+  public static void updateAllCompleted(boolean completed) {
+    update("completed = ?1", completed);
+  }
 }
