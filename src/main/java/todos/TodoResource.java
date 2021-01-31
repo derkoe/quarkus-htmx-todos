@@ -24,9 +24,20 @@ public class TodoResource {
   }
 
   @GET
-  @Produces(MediaType.TEXT_HTML)
   public TemplateInstance list() {
     return Templates.list().data("todos", Todo.listAll());
+  }
+
+  @GET
+  @Path("/active")
+  public TemplateInstance active() {
+    return Templates.list().data("todos", Todo.findActive());
+  }
+
+  @GET
+  @Path("/completed")
+  public TemplateInstance completed() {
+    return Templates.list().data("todos", Todo.findCompleted());
   }
 
   @POST

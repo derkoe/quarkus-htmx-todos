@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{#insert title}Todos{/}</title>
-    <script src="/turbo.es5-umd.js"></script>
+    <script src="/webjars/hotwired__turbo/dist/turbo.es5-umd.js"></script>
+    <script src="/webjars/stimulus/dist/stimulus.umd.js"></script>
+    <script src="/todos.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css@2.3.0/index.css">
 </head>
 <body>
     <section class="todoapp">
-        <header class="header">
-            <h1>todos</h1>
-            <form action="/todos" method="POST">
-                <input class="new-todo" name="title" placeholder="What needs to be done?" autoComplete="on" autoFocus>
-            </form>
-        </header>
         {#insert body}No body!{/} 
     </section>
     <footer class="info">

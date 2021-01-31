@@ -1,6 +1,7 @@
 package todos;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import java.util.List;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,4 +21,12 @@ public class Todo extends PanacheEntityBase {
   public String title;
 
   public Boolean completed = Boolean.FALSE;
+
+  public static List<Todo> findActive() {
+    return list("completed", Boolean.FALSE);
+  }
+
+  public static List<Todo> findCompleted() {
+    return list("completed", Boolean.TRUE);
+  }
 }

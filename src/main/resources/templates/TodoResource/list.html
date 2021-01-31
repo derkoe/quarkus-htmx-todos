@@ -3,14 +3,20 @@
 {#include base} 
   {#title}My Title{/title} 
   {#body} 
-  <section class="main">
-    <input id="toggle-all" class="toggle-all" type="checkbox">
-    <label htmlFor="toggle-all">Mark all as complete</label>
+  <header class="header">
+    <h1>todos</h1>
+    <form action="/todos" method="POST">
+        <input class="new-todo" name="title" placeholder="What needs to be done?" autoComplete="on" autoFocus>
+    </form>
+  </header>
+  <section class="main" data-controller="todos">
+    <input id="toggle-all" class="toggle-all" type="checkbox" data-action="click->todos#toggle">
+    <label htmlFor="toggle-all" data-action="click->todos#toggle">Mark all as complete</label>
     <ul class="todo-list">
       {#for todo in todos}
         <li class={{ completed: todo.completed, editing: todo.id === this.editing }}>
           <div class="view">
-            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
+            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} data-todos-target="toggle">
             <label>{todo.title}</label>
             <form action="/todos/{todo.id}/delete" method="POST"><button type="submit" class="destroy"></button></form>
           </div>
@@ -18,5 +24,22 @@
       {/for}
     </ul>
   </section>
+  <footer class="footer">
+    <span class="todo-count">
+      <strong>{todos.size()}</strong> {todos.size() > 1 ? 'items' : 'item'} left
+    </span>
+    <ul class="filters">
+      <li>
+        <a class="all" href="/todos">All</a>
+      </li>
+      <li>
+        <a class="active" href="/todos/active">Active</a>
+      </li>
+      <li>
+        <a class="completed" href="/todos/completed">Completed</a>
+      </li>
+      <button class="clear-completed">Clear completed</button>
+    </ul>
+  </footer>
   {/body}
 {/include}
