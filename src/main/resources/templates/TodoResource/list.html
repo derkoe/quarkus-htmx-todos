@@ -16,15 +16,18 @@
     </form>
     <ul class="todo-list">
       {#for todo in todos}
-        <li class="{todo.completed ? 'completed' : ''}">
+        <li class="{todo.completed ? 'completed' : ''}" data-controller="todo" data-todo-target="item">
           <div class="view">
             <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
-            <label>{todo.title}</label>
+            <label data-action="click->todo#showEdit">{todo.title}</label>
             <form action="/todos/{todo.id}/delete" method="POST">
               <button type="submit" class="destroy"></button>
             </form>
           </div>
-        </li> 
+          <form action="/todos/{todo.id}" method="POST">
+            <input class="edit" name="title" value="{todo.title}" data-todo-target="edit" data-action="blur->todo#hideEdit">
+          </form>
+        </li>
       {/for}
     </ul>
   </section>
