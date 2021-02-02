@@ -9,6 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.jboss.resteasy.annotations.Form;
@@ -19,7 +20,9 @@ public class TodoResource {
   @CheckedTemplate
   public static class Templates {
 
-    public static native TemplateInstance list();
+    public static native TemplateInstance list(List<Todo> todos);
+
+    public static native TemplateInstance item_turbo(Todo todo);
   }
 
   @GET
@@ -40,7 +43,7 @@ public class TodoResource {
   }
 
   private TemplateInstance showList(List<Todo> todos) {
-    return Templates.list().data("todos", todos).data("itemsLeft", Todo.countActive());
+    return Templates.list(todos).data("itemsLeft", Todo.countActive());
   }
 
   @POST
@@ -48,6 +51,14 @@ public class TodoResource {
   public Response add(@Form Todo todo) {
     Todo.persist(todo);
     return Response.status(Status.FOUND).header("Location", "/todos").build();
+  }
+
+  @POST
+  @Produces("text/vnd.turbo-stream.html")
+  @Transactional
+  public TemplateInstance addTurbo(@Form Todo todo) {
+    Todo.persist(todo);
+    return Templates.item_turbo(todo).data("turbo-action", "append").data("turbo-target", "todo-list");
   }
 
   @POST
@@ -75,6 +86,16 @@ public class TodoResource {
     Todo todo = Todo.findById(id);
     todo.completed = !todo.completed;
     return Response.status(Status.FOUND).header("Location", "/todos").build();
+  }
+
+  @Transactional
+  @POST
+  @Produces("text/vnd.turbo-stream.html")
+  @Path("/{id}/toggle")
+  public TemplateInstance toggleTurbo(@PathParam("id") UUID id) {
+    Todo todo = Todo.findById(id);
+    todo.completed = !todo.completed;
+    return Templates.item_turbo(todo).data("turbo-action", "replace").data("turbo-target", "item-" + todo.id);
   }
 
   @POST

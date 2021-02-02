@@ -1,5 +1,3 @@
-{@java.util.List<todos.Todo> todos}
-
 {#include base} 
   {#title}Quarkus/Hotwire • TodoMVC{/title} 
   {#body} 
@@ -14,22 +12,9 @@
       <button type="submit" id="toggle-all" class="toggle-all"></button>
       <label for="toggle-all">Mark all as complete</label>
     </form>
-    <ul class="todo-list">
+    <ul class="todo-list" id="todo-list">
       {#for todo in todos}
-        <li class="{todo.completed ? 'completed' : ''}" data-controller="todo" data-todo-target="item">
-          <div class="view">
-            <form action="/todos/{todo.id}/toggle" method="POST" id="toggle-{todo.id}">
-            </form>
-            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} onclick="document.getElementById('toggle-{todo.id}').requestSubmit()">
-            <label data-action="click->todo#showEdit">{todo.title}</label>
-            <form action="/todos/{todo.id}/delete" method="POST">
-              <button type="submit" class="destroy"></button>
-            </form>
-          </div>
-          <form action="/todos/{todo.id}" method="POST">
-            <input class="edit" name="title" value="{todo.title}" data-todo-target="edit" data-action="blur->todo#hideEdit keyup->todo#keyup">
-          </form>
-        </li>
+        {#include TodoResource/item.html todo=todo /}
       {/for}
     </ul>
   </section>

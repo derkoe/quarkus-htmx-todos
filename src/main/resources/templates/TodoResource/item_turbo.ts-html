@@ -1,0 +1,5 @@
+<turbo-stream action="{turbo-action}" target="{turbo-target}">
+  <template>
+    {#include TodoResource/item.html todo=todo /}
+  </template>
+</turbo-stream>
