@@ -1,4 +1,5 @@
 (() => {
+  const ESCAPE_KEY = 27;
   const application = Stimulus.Application.start();
 
   application.register("todo", class extends Stimulus.Controller {
@@ -10,6 +11,11 @@
     }
     hideEdit() {
       this.itemTarget.classList.remove("editing");
+    }
+    keyup(event) {
+      if (event.keyCode === ESCAPE_KEY) {
+        this.hideEdit();
+      }
     }
   });
 })();

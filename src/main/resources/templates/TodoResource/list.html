@@ -25,7 +25,7 @@
             </form>
           </div>
           <form action="/todos/{todo.id}" method="POST">
-            <input class="edit" name="title" value="{todo.title}" data-todo-target="edit" data-action="blur->todo#hideEdit">
+            <input class="edit" name="title" value="{todo.title}" data-todo-target="edit" data-action="blur->todo#hideEdit keyup->todo#keyup">
           </form>
         </li>
       {/for}
