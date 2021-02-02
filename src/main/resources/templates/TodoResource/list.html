@@ -18,7 +18,9 @@
       {#for todo in todos}
         <li class="{todo.completed ? 'completed' : ''}" data-controller="todo" data-todo-target="item">
           <div class="view">
-            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if}>
+            <form action="/todos/{todo.id}/toggle" method="POST" id="toggle-{todo.id}">
+            </form>
+            <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} onclick="document.getElementById('toggle-{todo.id}').requestSubmit()">
             <label data-action="click->todo#showEdit">{todo.title}</label>
             <form action="/todos/{todo.id}/delete" method="POST">
               <button type="submit" class="destroy"></button>
@@ -33,7 +35,7 @@
   </section>
   <footer class="footer">
     <span class="todo-count">
-      <strong>{todos.size()}</strong> {todos.size() > 1 ? 'items' : 'item'} left
+      <strong>{itemsLeft}</strong> {#if itemsLeft == 1}item{#else}items{/if} left
     </span>
     <ul class="filters">
       <li>

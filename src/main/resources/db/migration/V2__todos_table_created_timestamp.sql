@@ -1,0 +1,1 @@
+alter table TODOS add CREATED_TIMESTAMP timestamp;

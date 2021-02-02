@@ -2,6 +2,7 @@ package todos;
 
 import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.api.CheckedTemplate;
+import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
@@ -23,19 +24,23 @@ public class TodoResource {
 
   @GET
   public TemplateInstance list() {
-    return Templates.list().data("todos", Todo.listAll()).data("all", true);
+    return showList(Todo.listAll()).data("all", true);
   }
 
   @GET
   @Path("/active")
   public TemplateInstance active() {
-    return Templates.list().data("todos", Todo.findActive()).data("active", true);
+    return showList(Todo.listActive()).data("active", true);
   }
 
   @GET
   @Path("/completed")
   public TemplateInstance completed() {
-    return Templates.list().data("todos", Todo.findCompleted()).data("completed", "true");
+    return showList(Todo.listCompleted()).data("completed", true);
+  }
+
+  private TemplateInstance showList(List<Todo> todos) {
+    return Templates.list().data("todos", todos).data("itemsLeft", Todo.countActive());
   }
 
   @POST
@@ -58,8 +63,17 @@ public class TodoResource {
   @POST
   @Path("/toggle-all")
   public Response toggle() {
-    boolean allCompleted = Todo.findActive().isEmpty();
+    boolean allCompleted = Todo.countActive() == 0;
     Todo.updateAllCompleted(!allCompleted);
+    return Response.status(Status.FOUND).header("Location", "/todos").build();
+  }
+
+  @Transactional
+  @POST
+  @Path("/{id}/toggle")
+  public Response toggle(@PathParam("id") UUID id) {
+    Todo todo = Todo.findById(id);
+    todo.completed = !todo.completed;
     return Response.status(Status.FOUND).header("Location", "/todos").build();
   }
 

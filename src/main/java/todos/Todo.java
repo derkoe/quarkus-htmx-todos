@@ -1,12 +1,16 @@
 package todos;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.panache.common.Sort;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
 import org.jboss.resteasy.annotations.jaxrs.FormParam;
 
 @Entity
@@ -22,12 +26,24 @@ public class Todo extends PanacheEntityBase {
 
   public Boolean completed = Boolean.FALSE;
 
-  public static List<Todo> findActive() {
-    return list("completed", Boolean.FALSE);
+  @CreationTimestamp
+  @Column(name = "created_timestamp")
+  public Timestamp createdTimestamp;
+
+  public boolean isNotCompleted() {
+    return !completed;
   }
 
-  public static List<Todo> findCompleted() {
-    return list("completed", Boolean.TRUE);
+  public static List<Todo> listAll() {
+    return findAll(Sort.ascending("createdTimestamp")).list();
+  }
+
+  public static List<Todo> listActive() {
+    return list("completed=false", Sort.ascending("createdTimestamp"));
+  }
+
+  public static List<Todo> listCompleted() {
+    return list("completed=true", Sort.ascending("createdTimestamp"));
   }
 
   public static void updateAllCompleted(boolean completed) {
@@ -36,5 +52,9 @@ public class Todo extends PanacheEntityBase {
 
   public static void deleteCompleted() {
     delete("completed = true");
+  }
+
+  public static int countActive() {
+    return (int) count("completed != true");
   }
 }
