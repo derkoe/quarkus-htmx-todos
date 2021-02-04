@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{#insert title}Todos{/}</title>
-    <script src="/webjars/hotwired__turbo/dist/turbo.es5-umd.js"></script>
-    <script src="/webjars/stimulus/dist/stimulus.umd.js"></script>
-    <script src="/todos.js"></script>
+    <script src="/webjars/htmx.org/dist/htmx.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css@2.3.0/index.css" />
   </head>
   <body>
-    <section class="todoapp">{#insert body}No body!{/}</section>
+    <section class="todoapp" hx-boost="true">{#insert body}No body!{/}</section>
     <footer class="info">
       <p>Double-click to edit a todo</p>
       <p>Template by <a href="http://sindresorhus.com">Sindre Sorhus</a></p>

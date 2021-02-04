@@ -1,15 +1,15 @@
 {@todos.Todo todo}
-<li class="{todo.completed ? 'completed' : ''}" data-controller="todo" data-todo-target="item" id="item-{todo.id}">
+<li class="{todo.completed ? 'completed' : ''}" id="item-{todo.id}">
   <div class="view">
-    <form action="/todos/{todo.id}/toggle" method="POST" id="toggle-{todo.id}">
+    <form action="/todos/{todo.id}/toggle" method="POST" id="toggle-{todo.id}" hx-target="#item-{todo.id}" hx-swap="outerhtml">
     </form>
     <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} onclick="document.getElementById('toggle-{todo.id}').requestSubmit()">
-    <label data-action="click->todo#showEdit">{todo.title}</label>
+    <label>{todo.title}</label>
     <form action="/todos/{todo.id}/delete" method="POST">
       <button type="submit" class="destroy"></button>
     </form>
   </div>
   <form action="/todos/{todo.id}" method="POST">
-    <input class="edit" name="title" value="{todo.title}" data-todo-target="edit" data-action="blur->todo#hideEdit keyup->todo#keyup">
+    <input class="edit" name="title" value="{todo.title}">
   </form>
 </li>

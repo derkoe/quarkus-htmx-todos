@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import org.jboss.resteasy.annotations.Form;
@@ -22,7 +22,7 @@ public class TodoResource {
 
     public static native TemplateInstance list(List<Todo> todos);
 
-    public static native TemplateInstance item_turbo(Todo todo);
+    public static native TemplateInstance item(Todo todo);
   }
 
   @GET
@@ -48,17 +48,12 @@ public class TodoResource {
 
   @POST
   @Transactional
-  public Response add(@Form Todo todo) {
+  public Object add(@Form Todo todo, @HeaderParam("HX-Request") boolean hxRequest) {
     Todo.persist(todo);
+    if (hxRequest) {
+      return Templates.item(todo);
+    }
     return Response.status(Status.FOUND).header("Location", "/todos").build();
-  }
-
-  @POST
-  @Produces("text/vnd.turbo-stream.html")
-  @Transactional
-  public TemplateInstance addTurbo(@Form Todo todo) {
-    Todo.persist(todo);
-    return Templates.item_turbo(todo).data("turbo-action", "append").data("turbo-target", "todo-list");
   }
 
   @POST
@@ -82,26 +77,19 @@ public class TodoResource {
   @Transactional
   @POST
   @Path("/{id}/toggle")
-  public Response toggle(@PathParam("id") UUID id) {
+  public Object toggle(@PathParam("id") UUID id, @HeaderParam("HX-Request") boolean hxRequest) {
     Todo todo = Todo.findById(id);
     todo.completed = !todo.completed;
+    if (hxRequest) {
+      return Templates.item(todo);
+    }
     return Response.status(Status.FOUND).header("Location", "/todos").build();
-  }
-
-  @Transactional
-  @POST
-  @Produces("text/vnd.turbo-stream.html")
-  @Path("/{id}/toggle")
-  public TemplateInstance toggleTurbo(@PathParam("id") UUID id) {
-    Todo todo = Todo.findById(id);
-    todo.completed = !todo.completed;
-    return Templates.item_turbo(todo).data("turbo-action", "replace").data("turbo-target", "item-" + todo.id);
   }
 
   @POST
   @Path("{id}/delete")
   @Transactional
-  public Response delete(@PathParam("id") UUID id) {
+  public Response delete(@PathParam("id") UUID id, @HeaderParam("HX-Request") boolean hxRequest) {
     Todo.deleteById(id);
     return Response.status(Status.FOUND).header("Location", "/todos").build();
   }

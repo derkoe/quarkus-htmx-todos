@@ -1,14 +1,14 @@
 {#include base} 
-  {#title}Quarkus/Hotwire • TodoMVC{/title} 
+  {#title}Quarkus/htmx • TodoMVC{/title} 
   {#body} 
   <header class="header">
     <h1>todos</h1>
-    <form action="/todos" method="POST">
+    <form action="/todos" method="POST" hx-target="#todo-list" hx-swap="beforeend">
         <input class="new-todo" name="title" placeholder="What needs to be done?" autofocus>
     </form>
   </header>
   <section class="main">
-    <form action="/todos/toggle-all" method="POST">
+    <form action="/todos/toggle-all" method="POST" hx-post="/todos/toggle-all" hx-select="#todo-list" hx-target="#todo-list" hx-swap="outerHTML">
       <button type="submit" id="toggle-all" class="toggle-all"></button>
       <label for="toggle-all">Mark all as complete</label>
     </form>
