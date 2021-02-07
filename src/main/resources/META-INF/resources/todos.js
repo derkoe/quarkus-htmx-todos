@@ -1,21 +1,24 @@
 (() => {
   const ESCAPE_KEY = 27;
-  const application = Stimulus.Application.start();
 
-  application.register("todo", class extends Stimulus.Controller {
-    static targets = [ "item", "edit" ];
-    showEdit() {
-      this.itemTarget.classList.add("editing");
-      this.editTarget.focus();
-      this.editTarget.selectionStart = this.editTarget.value.length;
-    }
-    hideEdit() {
-      this.itemTarget.classList.remove("editing");
-    }
-    keyup(event) {
+  function showEdit(item) {
+    item.classList.add("editing");
+    const editField = item.querySelector(".edit");
+    editField.focus();
+    editField.selectionStart = editField.value.length;
+    editField.addEventListener("blur", () => item.classList.remove("editing"));
+    editField.addEventListener("keyup", (event) => {
       if (event.keyCode === ESCAPE_KEY) {
-        this.hideEdit();
+        item.classList.remove("editing")
       }
-    }
-  });
+    });
+  }
+
+  function addListeners() {
+    document.querySelectorAll("#todo-list li").forEach((item) => {
+      item.addEventListener("dblclick", () => showEdit(item));
+    });
+  }
+
+  window.addEventListener("htmx:load", addListeners);
 })();
