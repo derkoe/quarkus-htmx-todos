@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - maven-repository:/home/vscode/.m2/repository
+    command: sleep infinity
+    links:
+      - database
+  
+  database:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: todos
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: todos
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  maven-repository:
+  pgdata:

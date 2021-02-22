@@ -1,0 +1,11 @@
+{
+    "name": "Quarkus htmx Todos",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
+    "extensions": [
+        "vscjava.vscode-java-pack"
+    ]
+}
