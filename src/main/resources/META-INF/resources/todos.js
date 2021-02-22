@@ -9,7 +9,7 @@
     editField.addEventListener("blur", () => item.classList.remove("editing"));
     editField.addEventListener("keyup", (event) => {
       if (event.keyCode === ESCAPE_KEY) {
-        item.classList.remove("editing")
+        item.classList.remove("editing");
       }
     });
   }
@@ -21,4 +21,7 @@
   }
 
   window.addEventListener("htmx:load", addListeners);
+  window.addEventListener("clear-add-todo", () => {
+    document.querySelectorAll(".new-todo").forEach((elm) => (elm.value = ""));
+  });
 })();

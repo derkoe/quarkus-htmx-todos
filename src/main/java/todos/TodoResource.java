@@ -48,10 +48,10 @@ public class TodoResource {
 
   @POST
   @Transactional
-  public Object add(@Form Todo todo, @HeaderParam("HX-Request") boolean hxRequest) {
+  public Response add(@Form Todo todo, @HeaderParam("HX-Request") boolean hxRequest) {
     Todo.persist(todo);
     if (hxRequest) {
-      return Templates.item(todo);
+      return Response.ok(Templates.item(todo)).header("HX-Trigger", "clear-add-todo").build();
     }
     return Response.status(Status.FOUND).header("Location", "/todos").build();
   }
