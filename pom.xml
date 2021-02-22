@@ -13,16 +13,15 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus-plugin.version>1.11.3.Final</quarkus-plugin.version>
-    <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
-    <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
     <quarkus.platform.version>1.11.3.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
+    <htmx.version>1.0.0</htmx.version>
   </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
-        <artifactId>${quarkus.platform.artifact-id}</artifactId>
+        <groupId>io.quarkus</groupId>
+        <artifactId>quarkus-universe-bom</artifactId>
         <version>${quarkus.platform.version}</version>
         <type>pom</type>
         <scope>import</scope>
@@ -65,7 +64,7 @@
     <dependency>
       <groupId>org.webjars.npm</groupId>
       <artifactId>htmx.org</artifactId>
-      <version>1.0.0</version>
+      <version>${htmx.version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
