@@ -1,11 +1,15 @@
 {
-    "name": "Quarkus htmx Todos",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "app",
-    "workspaceFolder": "/workspace",
-    "remoteUser": "vscode",
-    "updateRemoteUserUID": true,
-    "extensions": [
-        "vscjava.vscode-java-pack"
-    ]
+  "name": "Quarkus htmx Todos",
+  "settings": {
+    "java.configuration.updateBuildConfiguration": "automatic",
+  },
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "extensions": [
+    "vscjava.vscode-java-pack",
+    "esbenp.prettier-vscode"
+  ]
 }
