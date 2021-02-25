@@ -34,6 +34,10 @@ public class Todo extends PanacheEntityBase {
     return !completed;
   }
 
+  public Boolean getCompleted() {
+    return completed;
+  }
+
   public static List<Todo> listAll() {
     return findAll(Sort.ascending("createdTimestamp")).list();
   }
