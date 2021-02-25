@@ -1,9 +1,9 @@
 {@todos.Todo todo}
-<li class="{todo.completed ? 'completed' : ''}" id="item-{todo.id}">
+<li {#if todo.getCompleted()}class="completed"{/if} id="item-{todo.id}">
   <div class="view">
     <form action="/todos/{todo.id}/toggle" method="POST" id="toggle-{todo.id}" hx-target="#item-{todo.id}" hx-swap="outerhtml">
     </form>
-    <input class="toggle" type="checkbox" {#if todo.completed}checked{/if} onclick="document.getElementById('toggle-{todo.id}').requestSubmit()">
+    <input class="toggle" type="checkbox" {#if todo.getCompleted()}checked{/if} onclick="document.getElementById('toggle-{todo.id}').requestSubmit()">
     <label>{todo.title}</label>
     <form action="/todos/{todo.id}/delete" method="POST">
       <button type="submit" class="destroy"></button>
