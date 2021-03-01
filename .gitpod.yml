@@ -1,0 +1,7 @@
+image: gitpod/workspace-postgres
+tasks:
+  - init: mvn compile
+    command: mvn quarkus:dev
+ports:
+  - port: 8080
+    onOpen: open-preview
