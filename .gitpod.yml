@@ -1,5 +1,6 @@
 image: gitpod/workspace-postgres
 tasks:
+  - init: psql -f create-dev-db.sql
   - init: mvn compile
     command: mvn quarkus:dev
 ports:
