@@ -15,5 +15,11 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Build with Maven
-        run: mvn -B verify
+      - name: Build Native
+        run: mvn -B package -Pnative
+      - name: Build Native Image
+        run: docker build -f src/main/docker/Dockerfile.native -t ghcr.io/derkoe/quarkus-htmx-todos:${GITHUB_REF:11} .
+      - name: Push image to ghcr.io
+        run: |
+          echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+          docker push ghcr.io/derkoe/quarkus-htmx-todos:${GITHUB_REF:11}
