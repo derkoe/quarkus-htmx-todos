@@ -3,7 +3,7 @@
     "lint-staged": "10.5.4",
     "prettier": "2.2.1",
     "prettier-plugin-java": "1.0.2",
-    "simple-git-hooks": "2.3.1"
+    "simple-git-hooks": "2.4.1"
   },
   "lint-staged": {
     "**/*.{json,yml,yaml,java}": [
