@@ -11,7 +11,7 @@ services:
       - database
   
   database:
-    image: postgres:12-alpine
+    image: postgres:13-alpine
     restart: unless-stopped
     ports:
       - 5432:5432
