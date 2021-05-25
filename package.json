@@ -2,7 +2,7 @@
   "devDependencies": {
     "lint-staged": "11.0.0",
     "prettier": "2.3.0",
-    "prettier-plugin-java": "1.0.2",
+    "prettier-plugin-java": "1.1.1",
     "simple-git-hooks": "2.4.1"
   },
   "lint-staged": {
