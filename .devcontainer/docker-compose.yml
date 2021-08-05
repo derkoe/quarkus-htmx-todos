@@ -9,7 +9,7 @@ services:
     command: sleep infinity
     links:
       - database
-  
+
   database:
     image: postgres:13-alpine
     restart: unless-stopped

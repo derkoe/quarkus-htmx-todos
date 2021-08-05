@@ -1,7 +1,7 @@
 package todos;
 
-import io.quarkus.qute.TemplateInstance;
 import io.quarkus.qute.CheckedTemplate;
+import io.quarkus.qute.TemplateInstance;
 import java.util.List;
 import java.util.UUID;
 import javax.transaction.Transactional;
