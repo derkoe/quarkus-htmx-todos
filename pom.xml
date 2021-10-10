@@ -15,7 +15,7 @@
     <quarkus-plugin.version>2.3.0.Final</quarkus-plugin.version>
     <quarkus.platform.version>2.3.0.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
-    <htmx.version>1.5.0</htmx.version>
+    <htmx.version>1.6.0</htmx.version>
   </properties>
   <dependencyManagement>
     <dependencies>
