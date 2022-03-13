@@ -4,9 +4,16 @@
     "java.configuration.updateBuildConfiguration": "automatic"
   },
   "dockerComposeFile": "docker-compose.yml",
+  "forwardPorts": [
+    8080
+  ],
   "service": "app",
   "workspaceFolder": "/workspace",
   "remoteUser": "vscode",
   "updateRemoteUserUID": true,
-  "extensions": ["vscjava.vscode-java-pack", "esbenp.prettier-vscode"]
+  "extensions": [
+    "vscjava.vscode-java-pack",
+    "esbenp.prettier-vscode"
+  ],
+  "postStartCommand": "mvn -B compile quarkus:dev"
 }
