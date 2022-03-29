@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   app:
     image: ghcr.io/derkoe/quarkus-htmx-todos:main
     environment:
@@ -10,6 +11,7 @@ services:
       - database
     depends_on:
       - database
+
   database:
     image: postgres:14-alpine
     environment:
@@ -17,3 +19,8 @@ services:
       POSTGRES_PASSWORD: "password"
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
