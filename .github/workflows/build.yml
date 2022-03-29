@@ -16,13 +16,29 @@ jobs:
         with:
           java-version: 11
           distribution: adopt
+      - name: Build
+        run: mvn -B package
+      - name: Docker Login
+        if: ${{ github.event_name != 'pull_request'}}
+        run: echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+      - name: Push image
+        if: ${{ github.event_name != 'pull_request'}}
+        run: mvn package -Dquarkus.container-image.push
+
+  build-native:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup java
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: adopt
       - name: Build Native
-        run: mvn -B package -Pnative
-      - name: Build Native Image
+        run: mvn -B package -Pnative -Dquarkus.container-image.build -Dquarkus.container-image.tag=main-native
+      - name: Docker Login
         if: ${{ github.event_name != 'pull_request'}}
-        run: docker build -f src/main/docker/Dockerfile.native -t ghcr.io/derkoe/quarkus-htmx-todos:${GITHUB_REF:11} .
-      - name: Push image to ghcr.io
+        run: echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+      - name: Push Native Image
         if: ${{ github.event_name != 'pull_request'}}
-        run: |
-          echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
-          docker push ghcr.io/derkoe/quarkus-htmx-todos:${GITHUB_REF:11}
+        run: mvn -B package -Pnative -Dquarkus.container-image.push -Dquarkus.native.reuse-existing=true -Dquarkus.container-image.tag=main-native
