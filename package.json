@@ -1,9 +1,9 @@
 {
   "devDependencies": {
-    "lint-staged": "12.4.0",
-    "prettier": "2.6.2",
-    "prettier-plugin-java": "1.6.1",
-    "simple-git-hooks": "2.7.0"
+    "lint-staged": "12.5.0",
+    "prettier": "2.7.1",
+    "prettier-plugin-java": "1.6.2",
+    "simple-git-hooks": "2.8.0"
   },
   "lint-staged": {
     "**/*.{json,yml,yaml,java}": [
