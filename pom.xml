@@ -6,15 +6,15 @@
   <artifactId>todos</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
-    <compiler-plugin.version>3.10.1</compiler-plugin.version>
+    <compiler-plugin.version>3.11.0</compiler-plugin.version>
     <htmx.version>1.8.5</htmx.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>2.16.0.Final</quarkus-plugin.version>
-    <quarkus.platform.version>2.16.0.Final</quarkus.platform.version>
+    <quarkus-plugin.version>2.16.3.Final</quarkus-plugin.version>
+    <quarkus.platform.version>2.16.3.Final</quarkus.platform.version>
     <surefire-plugin.version>2.22.2</surefire-plugin.version>
     <quarkus.container-image.registry>ghcr.io</quarkus.container-image.registry>
     <quarkus.container-image.group>derkoe</quarkus.container-image.group>
