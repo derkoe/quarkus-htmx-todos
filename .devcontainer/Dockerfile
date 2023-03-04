@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:jdk11u-alpine-nightly
+FROM eclipse-temurin:17-jdk-alpine
 
 ENV LANG="en_US.UTF-8"
 
