@@ -15,7 +15,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus-plugin.version>2.16.3.Final</quarkus-plugin.version>
     <quarkus.platform.version>2.16.3.Final</quarkus.platform.version>
-    <surefire-plugin.version>2.22.2</surefire-plugin.version>
+    <surefire-plugin.version>3.0.0</surefire-plugin.version>
     <quarkus.container-image.registry>ghcr.io</quarkus.container-image.registry>
     <quarkus.container-image.group>derkoe</quarkus.container-image.group>
     <quarkus.container-image.name>quarkus-htmx-todos</quarkus.container-image.name>
