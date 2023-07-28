@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:17.0.8_7-jdk-alpine
 
 ENV LANG="en_US.UTF-8"
 
