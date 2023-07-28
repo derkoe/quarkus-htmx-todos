@@ -13,7 +13,7 @@
     <maven.compiler.target>11</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <quarkus-plugin.version>2.16.8.Final</quarkus-plugin.version>
+    <quarkus-plugin.version>3.2.2.Final</quarkus-plugin.version>
     <quarkus.platform.version>2.16.8.Final</quarkus.platform.version>
     <surefire-plugin.version>3.1.2</surefire-plugin.version>
     <quarkus.container-image.registry>ghcr.io</quarkus.container-image.registry>
