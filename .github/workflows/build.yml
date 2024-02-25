@@ -20,7 +20,7 @@ jobs:
         run: mvn -B package
       - name: Docker Login
         if: ${{ github.event_name != 'pull_request'}}
-        run: echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+        run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u ${{github.actor}} --password-stdin
       - name: Push image
         if: ${{ github.event_name != 'pull_request'}}
         run: mvn package -Dquarkus.container-image.push
@@ -38,7 +38,7 @@ jobs:
         run: mvn -B package -Pnative -Dquarkus.container-image.build -Dquarkus.container-image.tag=main-native
       - name: Docker Login
         if: ${{ github.event_name != 'pull_request'}}
-        run: echo ${{ secrets.GHCR_PASSWORD }} | docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} --password-stdin
+        run: echo ${{secrets.GITHUB_TOKEN}} | docker login ghcr.io -u ${{github.actor}} --password-stdin
       - name: Push Native Image
         if: ${{ github.event_name != 'pull_request'}}
         run: mvn -B package -Pnative -Dquarkus.container-image.push -Dquarkus.native.reuse-existing=true -Dquarkus.container-image.tag=main-native
