@@ -2,7 +2,7 @@ FROM eclipse-temurin:21.0.2_13-jdk-alpine
 
 ENV LANG="en_US.UTF-8"
 
-RUN apk update && apk add git maven nodejs npm procps 
+RUN apk update && apk add git maven nodejs npm openssh procps 
 
 RUN adduser -D vscode && mkdir -p /home/vscode/.m2/repository && chown vscode:vscode /home/vscode/.m2/repository
 USER vscode
