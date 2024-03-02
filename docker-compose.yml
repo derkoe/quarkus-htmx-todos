@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   app:
     image: ghcr.io/derkoe/quarkus-htmx-todos:main
     environment:

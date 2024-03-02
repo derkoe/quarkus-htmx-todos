@@ -1,45 +1,42 @@
-{@java.lang.Integer itemsLeft}
-{@java.lang.Boolean all}
-{@java.lang.Boolean active}
-{@java.lang.Boolean completed}
-{#include base}
-  {#title}Quarkus/htmx • TodoMVC{/title} 
-  {#body} 
-  <header class="header">
-    <h1>todos</h1>
-    <form action="/todos" method="POST" hx-target="#todo-list" hx-swap="beforeend">
-        <input class="new-todo" name="title" placeholder="What needs to be done?" autofocus>
-    </form>
-  </header>
-  <section class="main">
-    <form action="/todos/toggle-all" method="POST" hx-post="/todos/toggle-all" hx-select="#todo-list" hx-target="#todo-list" hx-swap="outerHTML">
-      <button type="submit" id="toggle-all" class="toggle-all"></button>
-      <label for="toggle-all">Mark all as complete</label>
-    </form>
-    <ul class="todo-list" id="todo-list">
-      {#for todo in todos}
-        {#include TodoResource/item.html todo=todo /}
-      {/for}
-    </ul>
-  </section>
-  <footer class="footer">
-    <span class="todo-count">
-      <strong>{itemsLeft}</strong> {#if itemsLeft == 1}item{#else}items{/if} left
-    </span>
-    <ul class="filters">
-      <li>
-        <a class="{all ? 'selected' : ''}" href="/todos">All</a>
-      </li>
-      <li>
-        <a class="{active ? 'selected' : ''}" href="/todos/active">Active</a>
-      </li>
-      <li>
-        <a class="{completed ? 'selected' : ''}" href="/todos/completed">Completed</a>
-      </li>
-    </ul>
-    <form action="/todos/clear-completed" method="POST">
-      <button class="clear-completed">Clear completed</button>
-    </form>
-  </footer>
-  {/body}
-{/include}
+{@java.lang.Integer itemsLeft} {@java.lang.Boolean all} {@java.lang.Boolean active} {@java.lang.Boolean completed}
+{#include base} {#title}Quarkus/htmx • TodoMVC{/title} {#body}
+<header class="header">
+  <h1>todos</h1>
+  <form action="/todos" method="POST" hx-target="#todo-list" hx-swap="beforeend">
+    <input class="new-todo" name="title" placeholder="What needs to be done?" autofocus />
+  </form>
+</header>
+<section class="main">
+  <form
+    action="/todos/toggle-all"
+    method="POST"
+    hx-post="/todos/toggle-all"
+    hx-select="#todo-list"
+    hx-target="#todo-list"
+    hx-swap="outerHTML"
+  >
+    <button type="submit" id="toggle-all" class="toggle-all"></button>
+    <label for="toggle-all">Mark all as complete</label>
+  </form>
+  <ul class="todo-list" id="todo-list">
+    {#for todo in todos} {#include TodoResource/item.html todo=todo /} {/for}
+  </ul>
+</section>
+<footer class="footer">
+  <span class="todo-count"> <strong>{itemsLeft}</strong> {#if itemsLeft == 1}item{#else}items{/if} left </span>
+  <ul class="filters">
+    <li>
+      <a class="{all ? 'selected' : ''}" href="/todos">All</a>
+    </li>
+    <li>
+      <a class="{active ? 'selected' : ''}" href="/todos/active">Active</a>
+    </li>
+    <li>
+      <a class="{completed ? 'selected' : ''}" href="/todos/completed">Completed</a>
+    </li>
+  </ul>
+  <form action="/todos/clear-completed" method="POST">
+    <button class="clear-completed">Clear completed</button>
+  </form>
+</footer>
+{/body} {/include}
