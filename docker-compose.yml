@@ -6,8 +6,6 @@ services:
       QUARKUS_DATASOURCE_JDBC_URL: jdbc:postgresql://database:5432/todos
     ports:
       - "8080:8080"
-    links:
-      - database
     depends_on:
       - database
 
@@ -19,7 +17,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql
+      - "pgdata:/var/lib/postgresql/data"
 
 volumes:
   pgdata:
