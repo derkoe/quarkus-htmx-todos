@@ -8,6 +8,7 @@
   <properties>
     <compiler-plugin.version>3.15.0</compiler-plugin.version>
     <htmx.version>2.0.8</htmx.version>
+    <todomvc-app-css.version>2.4.1</todomvc-app-css.version>
     <maven.compiler.parameters>true</maven.compiler.parameters>
     <maven.compiler.source>25</maven.compiler.source>
     <maven.compiler.target>25</maven.compiler.target>
@@ -72,6 +73,11 @@
       <groupId>org.webjars.npm</groupId>
       <artifactId>htmx.org</artifactId>
       <version>${htmx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>todomvc-app-css</artifactId>
+      <version>${todomvc-app-css.version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
